@@ -7,9 +7,10 @@ import ScreenShotButton from "../ScreenShotButton";
 interface FeedbackContentStepProps{
     feedbackType: FeedBackType;
     onClick: () => void;
+    onIsSended: () => void;
 }
 
-const FeedbackContentStep: React.FC<FeedbackContentStepProps> = ({feedbackType, onClick}) => {
+const FeedbackContentStep: React.FC<FeedbackContentStepProps> = ({feedbackType, onClick, onIsSended}) => {
     const feedbackTypeInfo = feedbackTypes[feedbackType]
     const [screenshot,setScreenshot] = useState<string | null>(null);
     const [comment, setComment] = useState('');
@@ -17,7 +18,8 @@ const FeedbackContentStep: React.FC<FeedbackContentStepProps> = ({feedbackType, 
         event.preventDefault();
         console.log({
             screenshot, comment
-        })
+        });
+        onIsSended();
     };
     return (
         <>
